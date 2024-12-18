@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividades de JavaScript</title>
+    <script>
+        // 1. Função que calcula a soma de dois valores
+        function Soma() {
+            var v1 = parseInt(document.getElementById("v1").value);
+            var v2 = parseInt(document.getElementById("v2").value);
+            var resultado = v1 + v2;
+            document.getElementById("resultadoSoma").innerHTML = "Resultado: " + resultado;
+        }
+
+        // 2. Função que troca as imagens da lâmpada
+        function trocaLampada() {
+            var lampada = document.getElementById("lampada");
+            if (lampada.src.includes("lampada_acesa.jpg")) {
+                lampada.src = "lampada_apagada.jpg";
+            } else {
+                lampada.src = "lampada_acesa.jpg";
+            }
+        }
+
+        // 3. Função que acende a lâmpada ao passar o mouse
+        function acendeLampada() {
+            document.getElementById("lampadaMouse").src = "lampada_acesa.jpg";
+        }
+
+        function apagaLampada() {
+            document.getElementById("lampadaMouse").src = "lampada_apagada.jpg";
+        }
+
+        // 4. Função que muda a cor de fundo
+        function mudarCorFundo(cor) {
+            document.body.style.backgroundColor = cor;
+        }
+
+        // 5. Função que calcula o resto da divisão
+        function calcularResto() {
+            var valor1 = parseInt(document.getElementById("num1").value);
+            var valor2 = parseInt(document.getElementById("num2").value);
+            var resto = valor1 % valor2;
+            document.getElementById("resultadoResto").innerHTML = "Resto: " + resto;
+        }
+
+        // 6. Função que calcula 5% de desconto
+        function calcularDesconto(valor) {
+            return valor * 0.05;
+        }
+
+        // 7. Função que verifica se a pessoa tem mais de 65 anos
+        function verificaIdade() {
+            var anoNascimento = parseInt(document.getElementById("anoNascimento").value);
+            var anoAtual = new Date().getFullYear();
+            var idade = anoAtual - anoNascimento;
+            document.getElementById("resultadoIdade").innerHTML = (idade > 65) ? "Tem mais de 65 anos." : "Tem 65 anos ou menos.";
+        }
+
+        // 8. Função que gera a tabuada de 0 a 10
+        function gerarTabuada() {
+            var resultado = "";
+            for (var i = 0; i <= 10; i++) {
+                for (var j = 0; j <= 10; j++) {
+                    resultado += i + " x " + j + " = " + (i * j) + "<br>";
+                }
+                resultado += "<br>";
+            }
+            document.getElementById("resultadoTabuada").innerHTML = resultado;
+        }
+
+        // 9. Gera a tabuada quando a página carrega
+        window.onload = gerarTabuada;
+
+        // 10. Função para gerar a tabuada em formato de tabela
+        function gerarTabelaTabuada() {
+            var tabela = "<table border='1'>";
+            for (var i = 0; i <= 10; i++) {
+                tabela += "<tr>";
+                for (var j = 0; j <= 10; j++) {
+                    tabela += "<td>" + (i * j) + "</td>";
+                }
+                tabela += "</tr>";
+            }
+            tabela += "</table>";
+            document.getElementById("tabelaTabuada").innerHTML = tabela;
+        }
+    </script>
+</head>
+<body>
+    <h1>Atividades de JavaScript</h1>
+
+    <h2>1. Soma de dois valores</h2>
+    <input type="text" id="v1" placeholder="Valor 1">
+    <input type="text" id="v2" placeholder="Valor 2">
+    <button onclick="Soma()">Soma</button>
+    <p id="resultadoSoma"></p>
+
+    <h2>2. Lâmpada</h2>
+    <p><img id="lampada" onclick="trocaLampada()" src="lampada_acesa.jpg" width="140" height="180"></p>
+    <p>Clique na lâmpada para acender/apagar a luz.</p>
+
+    <h2>3. Lâmpada com Mouse</h2>
+    <p><img id="lampadaMouse" onmouseover="acendeLampada()" onmouseout="apagaLampada()" src="lampada_apagada.jpg" width="140" height="180"></p>
+    <p>Passe o mouse sobre a lâmpada para acender/apagar a luz.</p>
+
+    <h2>4. Mudar Cor de Fundo</h2>
+    <button onclick="mudarCorFundo('green')">Verde</button>
+    <button onclick="mudarCorFundo('red')">Vermelho</button>
+
+    <h2>5. Calcular Resto da Divisão</h2>
+    <input type="text" id="num1" placeholder="Número 1">
+    <input type="text" id="num2" placeholder="Número 2">
+    <button onclick="calcularResto()">Calcular resto</button>
+    <p id="resultadoResto"></p>
+
+    <h2>6. Calcular 5% de Desconto</h2>
+    <input type="text" id="valorProduto" placeholder="Valor do Produto">
+    <button onclick="alert('Desconto: R$' + calcularDesconto(parseFloat(document.getElementById('valorProduto').value)))">Calcular Desconto</button>
+
+    <h2>7. Verificar Idade</h2>
+    <input type="text" id="anoNascimento" placeholder="Ano de Nascimento">
+    <button onclick="verificaIdade()">Verificar Idade</button>
+    <p id="resultadoIdade"></p>
+
+    <h2>8. Tabuada de 0 a 10</h2>
+    <div id="resultadoTabuada"></div>
+
+    <h2>10. Tabela de Tabuada</h2>
+    <button onclick="gerarTabelaTabuada()">Gerar Tabela da Tabuada</button>
+    <div id="tabelaTabuada"></div>
+</body>
+</html>
